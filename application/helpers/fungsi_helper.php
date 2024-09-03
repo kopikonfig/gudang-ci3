@@ -29,14 +29,14 @@ function set_pesan($pesan, $tipe = 'success')
     
     switch ($tipe) {
         case 'warning':
-            $ci->session->set_flashdata('pesan', "<div class='alert alert-warning'><strong>Peringatan!</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            $ci->session->set_flashdata('pesan', "<div class='alert alert-warning'><strong>Peringatan,</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
           break;
         case 'danger':
-            $ci->session->set_flashdata('pesan', "<div class='alert alert-danger'><strong>Kesalahan!</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            $ci->session->set_flashdata('pesan', "<div class='alert alert-danger'><strong>Terdapat Kesalahan,</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
           break;
         case 'success':
         default:
-            $ci->session->set_flashdata('pesan', "<div class='alert alert-success'><strong>Sukses!</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            $ci->session->set_flashdata('pesan', "<div class='alert alert-success'><strong>Sukses,</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
       }
 }
 

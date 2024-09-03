@@ -29,7 +29,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules('role', 'Role', 'required|trim');
 
         if ($mode == 'add') {
-            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]|alpha_numeric');
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]');
             $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|trim');
             $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]|trim');
@@ -41,7 +41,7 @@ class User extends CI_Controller
             $uniq_username = $db['username'] == $username ? '' : '|is_unique[user.username]';
             $uniq_email = $db['email'] == $email ? '' : '|is_unique[user.email]';
 
-            $this->form_validation->set_rules('username', 'Username', 'required|trim|alpha_numeric' . $uniq_username);
+            $this->form_validation->set_rules('username', 'Username', 'required|trim' . $uniq_username);
             $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email' . $uniq_email);
         }
     }
@@ -79,29 +79,36 @@ class User extends CI_Controller
     public function edit($getId)
     {
         $id = encode_php_tags($getId);
+
+        $data['title'] = "Edit User";
+        $data['user'] = $this->admin->get('user', ['id_user' => $id]);
+        $this->template->load('templates/dashboard', 'user/edit', $data);
+    }
+
+    public function update()
+    {
+        $input = $this->input->post();
         $this->_validasi('edit');
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = "Edit User";
-            $data['user'] = $this->admin->get('user', ['id_user' => $id]);
-            $this->template->load('templates/dashboard', 'user/edit', $data);
-        } else {
-            $input = $this->input->post(null, true);
-            $input_data = [
-                'nama'          => $input['nama'],
-                'username'      => $input['username'],
-                'email'         => $input['email'],
-                'no_telp'       => $input['no_telp'],
-                'role'          => $input['role']
-            ];
+        if (!$this->form_validation->run()) {
+            set_pesan('mohon masukan data dengan benar!', 'danger');
+            redirect('user/edit/'. $input['id_user']);
+        } 
 
-            if ($this->admin->update('user', 'id_user', $id, $input_data)) {
-                set_pesan('data berhasil diubah.');
-                redirect('user');
-            } else {
-                set_pesan('data gagal diubah.', 'warning');
-                redirect('user/edit/' . $id);
-            }
+        $input_data = [
+            'nama'          => $input['nama'],
+            'username'      => $input['username'],
+            'email'         => $input['email'],
+            'no_telp'       => $input['no_telp'],
+            'role'          => $input['role']
+        ];
+
+        if ($this->admin->update('user', 'id_user', $input['id_user'], $input_data)) {
+            set_pesan('data berhasil diubah.');
+            redirect('user');
+        } else {
+            set_pesan('data gagal diubah.', 'warning');
+            redirect('user/edit/' . $id);
         }
     }
 

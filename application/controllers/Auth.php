@@ -74,7 +74,7 @@ class Auth extends CI_Controller
 
     public function register()
     {
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]|alpha_numeric');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|trim');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');

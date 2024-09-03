@@ -33,7 +33,7 @@ class Profile extends CI_Controller
         $uniq_username = $db['username'] == $username ? '' : '|is_unique[user.username]';
         $uniq_email = $db['email'] == $email ? '' : '|is_unique[user.email]';
 
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|alpha_numeric' . $uniq_username);
+        $this->form_validation->set_rules('username', 'Username', 'required|trim' . $uniq_username);
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email' . $uniq_email);
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|trim|numeric');
@@ -58,7 +58,7 @@ class Profile extends CI_Controller
     public function update()
     {
         $this->_validasi();
-        if ($this->form_validation->run() == false) {
+        if (!$this->form_validation->run()) {
             redirect('profile/edit');
         }
 
@@ -80,7 +80,7 @@ class Profile extends CI_Controller
             }
             if (!$this->upload->do_upload('foto')) {
                 $error = array('error' => $this->upload->display_errors());
-                set_pesan('terdapat kesalahan mengunggah gambar.', 'danger');
+                set_pesan('gagal mengunggah gambar.', 'danger');
                 die;
             } else {
                 $input['foto'] = $this->upload->data('file_name');
