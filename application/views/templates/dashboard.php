@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                <a class="nav-link" href="<?= site_url('dashboard');; ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -68,7 +68,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('supplier'); ?>">
+                <a class="nav-link pb-0" href="<?= site_url('supplier'); ?>">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Supplier</span>
                 </a>
@@ -83,9 +83,9 @@
                 <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-light py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master Barang:</h6>
-                        <a class="collapse-item" href="<?= base_url('satuan'); ?>">Satuan Barang</a>
-                        <a class="collapse-item" href="<?= base_url('jenis'); ?>">Jenis Barang</a>
-                        <a class="collapse-item" href="<?= base_url('barang'); ?>">Data Barang</a>
+                        <a class="collapse-item" href="<?= site_url('satuan'); ?>">Satuan Barang</a>
+                        <a class="collapse-item" href="<?= site_url('jenis'); ?>">Jenis Barang</a>
+                        <a class="collapse-item" href="<?= site_url('barang'); ?>">Data Barang</a>
                     </div>
                 </div>
             </li>
@@ -100,7 +100,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('barangmasuk'); ?>">
+                <a class="nav-link pb-0" href="<?= site_url('barangmasuk'); ?>">
                     <i class="fas fa-fw fa-download"></i>
                     <span>Barang Masuk</span>
                 </a>
@@ -108,7 +108,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('barangkeluar'); ?>">
+                <a class="nav-link" href="<?= site_url('barangkeluar'); ?>">
                     <i class="fas fa-fw fa-upload"></i>
                     <span>Barang Keluar</span>
                 </a>
@@ -123,7 +123,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('laporan'); ?>">
+                <a class="nav-link" href="<?= site_url('laporan'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Cetak Laporan</span>
                 </a>
@@ -140,7 +140,7 @@
 
                 <!-- Nav Item -->
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                    <a class="nav-link" href="<?= site_url('user'); ?>">
                         <i class="fas fa-fw fa-user-plus"></i>
                         <span>User Management</span>
                     </a>
@@ -185,15 +185,15 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?= base_url('profile'); ?>">
+                                <a class="dropdown-item" href="<?= site_url('profile'); ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="<?= base_url('profile/setting'); ?>">
+                                <a class="dropdown-item" href="<?= site_url('setting'); ?>">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item" href="<?= base_url('profile/ubahpassword'); ?>">
+                                <a class="dropdown-item" href="<?= site_url('profile/ubahpassword'); ?>">
                                     <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
                                 </a>
@@ -258,7 +258,7 @@
                 <div class="modal-body">Klik "Logout" dibawah ini jika anda yakin ingin logout.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
-                    <a class="btn btn-primary" href="<?= base_url('logout'); ?>">Logout</a>
+                    <a class="btn btn-primary" href="<?= site_url('logout'); ?>">Logout</a>
                 </div>
             </div>
         </div>

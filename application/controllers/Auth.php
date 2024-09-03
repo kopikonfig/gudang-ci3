@@ -20,6 +20,11 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        echo "none";
+    }
+
+    public function login()
+    {
         $this->_has_login();
 
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
@@ -50,11 +55,11 @@ class Auth extends CI_Controller
                     }
                 } else {
                     set_pesan('password salah', false);
-                    redirect('auth');
+                    redirect('login');
                 }
             } else {
                 set_pesan('username belum terdaftar', false);
-                redirect('auth');
+                redirect('login');
             }
         }
     }
@@ -64,7 +69,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('login_session');
 
         set_pesan('anda telah berhasil logout');
-        redirect('auth');
+        redirect('/');
     }
 
     public function register()

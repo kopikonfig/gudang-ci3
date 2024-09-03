@@ -52,7 +52,7 @@
                         Daftar
                     </button>
                     <div class="text-center mt-4">
-                        <a class="small" href="<?= base_url('auth') ?>">Sudah punya akun? Login</a>
+                        <a class="small" href="<?= site_url('login') ?>">Sudah punya akun? Login</a>
                     </div>
                     <?= form_close(); ?>
 

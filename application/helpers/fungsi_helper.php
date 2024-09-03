@@ -5,7 +5,7 @@ function cek_login()
     $ci = get_instance();
     if (!$ci->session->has_userdata('login_session')) {
         set_pesan('silahkan login.');
-        redirect('auth');
+        redirect('login');
     }
 }
 

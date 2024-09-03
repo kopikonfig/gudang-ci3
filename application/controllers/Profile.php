@@ -21,7 +21,7 @@ class Profile extends CI_Controller
     {
         $data['title'] = "Profile";
         $data['user'] = $this->user;
-        $this->template->load('templates/dashboard', 'profile/user', $data);
+        $this->template->load('templates/dashboard', 'profile/index', $data);
     }
 
     private function _validasi()
@@ -41,57 +41,60 @@ class Profile extends CI_Controller
 
     private function _config()
     {
-        $config['upload_path']      = "./assets/img/avatar";
-        $config['allowed_types']    = 'gif|jpg|jpeg|png';
+        $config['upload_path'] = './assets/img/avatar/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '2048';
         $config['encrypt_name']     = TRUE;
-        $config['max_size']         = '2048';
-
         $this->load->library('upload', $config);
     }
 
-    public function setting()
+    public function edit()
+    {
+        $data['title'] = "Profile";
+        $data['user'] = $this->user;
+        $this->template->load('templates/dashboard', 'profile/edit', $data);
+    }
+
+    public function update()
     {
         $this->_validasi();
+        if ($this->form_validation->run() == false) {
+            redirect('profile/edit');
+        }
+
         $this->_config();
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = "Profile";
-            $data['user'] = $this->user;
-            $this->template->load('templates/dashboard', 'profile/setting', $data);
-        } else {
-            $input = $this->input->post(null, true);
-            if (empty($_FILES['foto']['name'])) {
-                $insert = $this->admin->update('user', 'id_user', $input['id_user'], $input);
-                if ($insert) {
-                    set_pesan('perubahan berhasil disimpan.');
-                } else {
-                    set_pesan('perubahan tidak disimpan.');
-                }
-                redirect('profile/setting');
-            } else {
-                if ($this->upload->do_upload('foto') == false) {
-                    echo $this->upload->display_errors();
-                    die;
-                } else {
-                    if (userdata('foto') != 'user.png') {
-                        $old_image = FCPATH . 'assets/img/avatar/' . userdata('foto');
-                        if (!unlink($old_image)) {
-                            set_pesan('gagal hapus foto lama.');
-                            redirect('profile/setting');
-                        }
-                    }
+        $input = $this->input->post();
 
-                    $input['foto'] = $this->upload->data('file_name');
-                    $update = $this->admin->update('user', 'id_user', $input['id_user'], $input);
-                    if ($update) {
-                        set_pesan('perubahan berhasil disimpan.');
-                    } else {
-                        set_pesan('gagal menyimpan perubahan');
-                    }
-                    redirect('profile/setting');
+        $data['photo_name']  = $this->input->post('foto', TRUE);
+        $data['photo_thumb'] = $_FILES['foto']['name'];
+
+        // init photos if only available
+        if (!empty($data['photo_thumb'])) {
+            $old_image = FCPATH . 'assets/img/avatar/' . userdata('foto');
+            if (file_exists($old_image)) {
+                if (!unlink($old_image)) {
+                    set_pesan('gagal hapus foto lama.');
+                    redirect('profile/edit');
                 }
             }
+            if (!$this->upload->do_upload('foto')) {
+                $error = array('error' => $this->upload->display_errors());
+                set_pesan('terdapat kesalahan mengunggah gambar.');
+                die;
+            } else {
+                $input['foto'] = $this->upload->data('file_name');
+            }
         }
+
+        // give messages
+        if ($this->admin->update('user', 'id_user', $input['id_user'], $input)) {
+            set_pesan('perubahan berhasil disimpan.');
+        } else {
+            set_pesan('perubahan tidak disimpan.');
+        }
+
+        redirect('profile/edit');
     }
 
     public function ubahpassword()
