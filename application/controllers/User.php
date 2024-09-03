@@ -70,7 +70,7 @@ class User extends CI_Controller
                 set_pesan('data berhasil disimpan.');
                 redirect('user');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('user/add');
             }
         }
@@ -99,7 +99,7 @@ class User extends CI_Controller
                 set_pesan('data berhasil diubah.');
                 redirect('user');
             } else {
-                set_pesan('data gagal diubah.', false);
+                set_pesan('data gagal diubah.', 'warning');
                 redirect('user/edit/' . $id);
             }
         }
@@ -111,7 +111,7 @@ class User extends CI_Controller
         if ($this->admin->delete('user', 'id_user', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('user');
     }

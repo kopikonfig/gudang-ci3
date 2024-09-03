@@ -38,7 +38,7 @@ class Satuan extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('satuan');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('satuan/add');
             }
         }
@@ -60,7 +60,7 @@ class Satuan extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('satuan');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('satuan/add');
             }
         }
@@ -72,7 +72,7 @@ class Satuan extends CI_Controller
         if ($this->admin->delete('satuan', 'id_satuan', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('satuan');
     }

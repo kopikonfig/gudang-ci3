@@ -38,7 +38,7 @@ class Jenis extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('jenis');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('jenis/add');
             }
         }
@@ -60,7 +60,7 @@ class Jenis extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('jenis');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('jenis/add');
             }
         }
@@ -72,7 +72,7 @@ class Jenis extends CI_Controller
         if ($this->admin->delete('jenis', 'id_jenis', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('jenis');
     }

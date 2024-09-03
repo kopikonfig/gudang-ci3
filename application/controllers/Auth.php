@@ -42,7 +42,7 @@ class Auth extends CI_Controller
                 if (password_verify($input['password'], $password)) {
                     $user_db = $this->auth->userdata($input['username']);
                     if ($user_db['is_active'] != 1) {
-                        set_pesan('akun anda belum aktif/dinonaktifkan. Silahkan hubungi admin.', false);
+                        set_pesan('akun anda belum aktif/dinonaktifkan. Silahkan hubungi admin.', 'danger');
                         redirect('login');
                     } else {
                         $userdata = [
@@ -54,11 +54,11 @@ class Auth extends CI_Controller
                         redirect('dashboard');
                     }
                 } else {
-                    set_pesan('password salah', false);
+                    set_pesan('password salah', 'danger');
                     redirect('login');
                 }
             } else {
-                set_pesan('username belum terdaftar', false);
+                set_pesan('username belum terdaftar', 'danger');
                 redirect('login');
             }
         }
@@ -98,7 +98,7 @@ class Auth extends CI_Controller
                 set_pesan('daftar berhasil. Selanjutnya silahkan hubungi admin untuk mengaktifkan akun anda.');
                 redirect('login');
             } else {
-                set_pesan('gagal menyimpan ke database', false);
+                set_pesan('gagal menyimpan ke database', 'warning');
                 redirect('register');
             }
         }

@@ -80,7 +80,7 @@ class Profile extends CI_Controller
             }
             if (!$this->upload->do_upload('foto')) {
                 $error = array('error' => $this->upload->display_errors());
-                set_pesan('terdapat kesalahan mengunggah gambar.');
+                set_pesan('terdapat kesalahan mengunggah gambar.', 'danger');
                 die;
             } else {
                 $input['foto'] = $this->upload->data('file_name');
@@ -91,7 +91,7 @@ class Profile extends CI_Controller
         if ($this->admin->update('user', 'id_user', $input['id_user'], $input)) {
             set_pesan('perubahan berhasil disimpan.');
         } else {
-            set_pesan('perubahan tidak disimpan.');
+            set_pesan('perubahan tidak disimpan.', 'warning');
         }
 
         redirect('profile/edit');
@@ -115,10 +115,10 @@ class Profile extends CI_Controller
                 if ($query) {
                     set_pesan('password berhasil diubah.');
                 } else {
-                    set_pesan('gagal ubah password', false);
+                    set_pesan('gagal ubah password', 'danger');
                 }
             } else {
-                set_pesan('password lama salah.', false);
+                set_pesan('password lama salah.', 'danger');
             }
             redirect('profile/ubahpassword');
         }

@@ -70,7 +70,7 @@ class Barangkeluar extends CI_Controller
                 set_pesan('data berhasil disimpan.');
                 redirect('barangkeluar');
             } else {
-                set_pesan('Opps ada kesalahan!');
+                set_pesan('Opps ada kesalahan!', 'danger');
                 redirect('barangkeluar/add');
             }
         }
@@ -82,7 +82,7 @@ class Barangkeluar extends CI_Controller
         if ($this->admin->delete('barang_keluar', 'id_barang_keluar', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('barangkeluar');
     }

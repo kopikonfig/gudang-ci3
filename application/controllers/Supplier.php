@@ -39,7 +39,7 @@ class Supplier extends CI_Controller
                 set_pesan('data berhasil disimpan.');
                 redirect('supplier');
             } else {
-                set_pesan('data gagal disimpan', false);
+                set_pesan('data gagal disimpan', 'warning');
                 redirect('supplier/add');
             }
         }
@@ -75,7 +75,7 @@ class Supplier extends CI_Controller
         if ($this->admin->delete('supplier', 'id_supplier', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('supplier');
     }

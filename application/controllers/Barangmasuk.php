@@ -51,7 +51,7 @@ class Barangmasuk extends CI_Controller
                 set_pesan('Data berhasil disimpan.');
                 redirect('barangmasuk');
             } else {
-                set_pesan('Opps ada kesalahan!');
+                set_pesan('Opps ada kesalahan!', 'danger');
                 redirect('barangmasuk/add');
             }
         }
@@ -63,7 +63,7 @@ class Barangmasuk extends CI_Controller
         if ($this->admin->delete('barang_masuk', 'id_barang_masuk', $id)) {
             set_pesan('Data berhasil dihapus.');
         } else {
-            set_pesan('Data gagal dihapus.', false);
+            set_pesan('Data gagal dihapus.', 'warning');
         }
         redirect('barangmasuk');
     }

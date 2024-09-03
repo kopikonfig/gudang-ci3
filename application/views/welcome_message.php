@@ -87,9 +87,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<h1>Welcome to Gudang App! </h1>
 
 		<div id="body" class="sectionHeight d-flex flex-column justify-content-center">
-		<a href="<?= site_url('login')?>" class="h-100">
+		<a href="<?= site_url('dashboard')?>" class="h-100">
 		<button type="submit" class="h-100 btn btn-primary btn-user btn-block">
-				<h2>Login</h2>
+				<h2>Masuk Dashboard</h2>
 			</button>
 		</a>
 		</div>

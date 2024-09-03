@@ -51,7 +51,7 @@ class Barang extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('barang');
             } else {
-                set_pesan('gagal menyimpan data');
+                set_pesan('gagal menyimpan data', 'warning');
                 redirect('barang/add');
             }
         }
@@ -76,7 +76,7 @@ class Barang extends CI_Controller
                 set_pesan('data berhasil disimpan');
                 redirect('barang');
             } else {
-                set_pesan('gagal menyimpan data');
+                set_pesan('gagal menyimpan data', 'warning');
                 redirect('barang/edit/' . $id);
             }
         }
@@ -88,7 +88,7 @@ class Barang extends CI_Controller
         if ($this->admin->delete('barang', 'id_barang', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
-            set_pesan('data gagal dihapus.', false);
+            set_pesan('data gagal dihapus.', 'warning');
         }
         redirect('barang');
     }
