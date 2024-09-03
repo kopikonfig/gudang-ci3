@@ -8,18 +8,16 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <?= form_open(); ?>
+                <?= form_open('laporan/print'); ?>
                 <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="transaksi">Laporan Transaksi</label>
+                    <label class="col-md-3 text-md-right" for="transaksi">Laporan</label>
                     <div class="col-md-9">
-                        <div class="custom-control custom-radio">
-                            <input value="barang_masuk" type="radio" id="barang_masuk" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_masuk">Barang Masuk</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input value="barang_keluar" type="radio" id="barang_keluar" name="transaksi" class="custom-control-input">
-                            <label class="custom-control-label" for="barang_keluar">Barang Keluar</label>
-                        </div>
+                        <select name="transaksi" id="transaksi" class="custom-select">
+                            <option value="" selected disabled>Pilih Jenis Laporan</option>
+                            <option value="barang_masuk" class="custom-control-input">Barang Masuk</option>
+                            <option value="barang_keluar" class="custom-control-input">Barang Keluar</option>
+
+                        </select>
                         <?= form_error('transaksi', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>

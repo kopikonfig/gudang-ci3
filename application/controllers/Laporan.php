@@ -14,28 +14,40 @@ class Laporan extends CI_Controller
 
     public function index()
     {
+        $data['title'] = "Laporan Transaksi";
+        $this->template->load('templates/dashboard', 'laporan/form', $data);
+    }
+
+    public function print()
+    {
         $this->form_validation->set_rules('transaksi', 'Transaksi', 'required|in_list[barang_masuk,barang_keluar]');
         $this->form_validation->set_rules('tanggal', 'Periode Tanggal', 'required');
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = "Laporan Transaksi";
-            $this->template->load('templates/dashboard', 'laporan/form', $data);
-        } else {
-            $input = $this->input->post(null, true);
-            $table = $input['transaksi'];
+        if (!$this->form_validation->run()) {
+            set_pesan('gagal memuat laporan. Mohon periksa kelengkapan parameter!', 'warning');
+            redirect('laporan');
+        }else{
+            $input = $this->input->post();
+            $laporan = $input['transaksi'];
             $tanggal = $input['tanggal'];
             $pecah = explode(' - ', $tanggal);
             $mulai = date('Y-m-d', strtotime($pecah[0]));
             $akhir = date('Y-m-d', strtotime(end($pecah)));
 
             $query = '';
-            if ($table == 'barang_masuk') {
-                $query = $this->admin->getBarangMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
-            } else {
-                $query = $this->admin->getBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+            switch ($laporan) {
+                case 'barang_masuk':
+                    $query = $this->admin->getBarangMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                    break;
+                case 'barang_keluar':
+                    $query = $this->admin->getBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                    break;
+                default:
+                    # code...
+                    // throw error
+                    break;
             }
-
-            $this->_cetak($query, $table, $tanggal);
+            $this->_cetak($query, $laporan, $tanggal);
         }
     }
 
@@ -73,7 +85,8 @@ class Laporan extends CI_Controller
                 $pdf->Cell(40, 7, $d['nama_supplier'], 1, 0, 'L');
                 $pdf->Cell(30, 7, $d['jumlah_masuk'] . ' ' . $d['nama_satuan'], 1, 0, 'C');
                 $pdf->Ln();
-            } else :
+            }
+        else :
             $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
             $pdf->Cell(25, 7, 'Tgl Keluar', 1, 0, 'C');
             $pdf->Cell(35, 7, 'ID Transaksi', 1, 0, 'C');
