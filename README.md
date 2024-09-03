@@ -12,6 +12,16 @@
 ### Recomended Machine
      - php7.x
      - mysql 8
+     
+### Preview
+* index
+    ![index](/preview/index_page.png)
+* login
+    ![login](/preview/login_page.png)
+* register
+    ![register](/preview/register_page.png)
+* dashboard
+    ![dashboard](/preview/dashboard_page.png)
 
 ### Installation
 1. define your base_url `/application/config/config`
