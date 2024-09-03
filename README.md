@@ -25,4 +25,4 @@
 	'password' => '',
 	'database' => 'gudang_app',
     ```
-3. restore database
+3. restore `restore_me.sql` to database
