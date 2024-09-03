@@ -26,7 +26,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="id_barang_keluar">ID Transaksi Barang Keluar</label>
                     <div class="col-md-4">
-                        <input value="<?= $id_barang_keluar; ?>" type="text" readonly="readonly" class="form-control">
+                        <input id="id_barang_keluar" value="<?= $id_barang_keluar; ?>" type="text" readonly="readonly" class="form-control">
                         <?= form_error('id_barang_keluar', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
